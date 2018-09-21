@@ -10,12 +10,12 @@ makeCacheMatrix <- function(x = matrix()) {
   
     invMatrix <- NULL
     set <- function(y) {
-          x <<- y
-          invMatrix <<- NULL
+          x <<- y                ## assign new value of matrix in parent environment 
+          invMatrix <<- NULL     ## if not new matrix, set invMatrix back to NULL 
     }
     get <- function() x
-    setInverse <- function(inv) invMatrix <<- inv
-    getInverse <- function() invMatrix
+    setInverse <- function(inv) invMatrix <<- inv  ## value of invMatrix assigned in parent environment
+    getInverse <- function() invMatrix             ## gets the value of invMatrix
     list(set = set, get = get,
          setInverse = setInverse,
          getInverse = getInverse)
@@ -35,7 +35,7 @@ cacheSolve <- function(x, ...) {
           return(invMatrix)
         }
         origMatrix <- x$get()
-        invMatrix <- solve(origMatrix, ...)
+        invMatrix <- solve(origMatrix, ...)  ## use the R solve function to compute the inverse matrix
         x$setInverse(invMatrix)
         invMatrix
 }
