@@ -32,10 +32,10 @@ cacheSolve <- function(x, ...) {
         invMatrix <- x$getInverse()
         if(!is.null(invMatrix)) {
           message("getting cached matrix")
-          return(invMatrix)
+          return(invMatrix)                 ## return the inverse matrix from cache, as it is already cahced.
         }
         origMatrix <- x$get()
-        invMatrix <- solve(origMatrix, ...)  ## use the R solve function to compute the inverse matrix
+        invMatrix <- solve(origMatrix, ...)  ## use the R solve function to compute the inverse matrix. It is not in cache yet.
         x$setInverse(invMatrix)
         invMatrix
 }
